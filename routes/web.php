@@ -29,3 +29,7 @@ Route::resource('admin/users', UserController::class);
 Route::resource('admin/fields', FieldController::class);
 Route::resource('admin/teams', TeamController::class);
 Route::resource('admin/team-members', TeamMemberController::class);
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
