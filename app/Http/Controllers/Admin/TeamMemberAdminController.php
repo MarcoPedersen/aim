@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Role;
+use App\Models\UserTeam;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class RoleController extends Controller
+class TeamMemberAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +15,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::latest()->get();
-
-        return view('admin.roles.index', [
-            'roles' => $roles,
-        ]);
+        //
     }
 
     /**
@@ -28,7 +25,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('admin.roles.create');
+        //
     }
 
     /**
@@ -39,10 +36,12 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        $role = new Role();
-        $role -> name = request('name');
-        $role ->save();
-        return redirect('/admin/roles') -> with('mssg','The role has been created');
+        $userTeam = new UserTeam();
+        $userTeam -> user_id = request('user_id');
+        $userTeam -> team_id = request('team_id');
+        $userTeam ->save();
+
+        return redirect('admin/teams/' . $userTeam->team_id . '/edit');
     }
 
     /**
@@ -51,11 +50,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(int $id)
+    public function show($id)
     {
-        $role = Role::findOrFail($id);
-        // use the $id variable to query the db for a record
-        return view('admin/roles/show', ['role' => $role]);
+        //
     }
 
     /**
@@ -64,10 +61,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(int $id)
+    public function edit($id)
     {
-        $role = Role::findOrFail($id);
-        return view('admin/roles/edit', ['role' => $role]);
+        //
     }
 
     /**
@@ -77,14 +73,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required'
-        ]);
-        $role = Role::findOrFail($id);
-        $role->update($request->all());
-        return redirect('/admin/roles') -> with('mssg','The role has been edited');
+        //
     }
 
     /**
@@ -93,11 +84,11 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy($id)
     {
-        $role = Role::findOrFail($id);
-        $role -> delete();
+        $member = UserTeam::findOrFail($id);
+        $member -> delete();
 
-        return redirect('/admin/roles');
+        return redirect('admin/teams/' . $member->team_id . '/edit');
     }
 }

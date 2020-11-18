@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Field;
+use App\Models\Role;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class FieldController extends Controller
+class RoleAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +15,10 @@ class FieldController extends Controller
      */
     public function index()
     {
-        $fields = Field::latest()->get();
+        $roles = Role::latest()->get();
 
-        return view('admin.fields.index', [
-            'fields' => $fields,
+        return view('admin.roles.index', [
+            'roles' => $roles,
         ]);
     }
 
@@ -28,7 +29,7 @@ class FieldController extends Controller
      */
     public function create()
     {
-        return view('admin.fields.create');
+        return view('admin.roles.create');
     }
 
     /**
@@ -39,12 +40,10 @@ class FieldController extends Controller
      */
     public function store(Request $request)
     {
-        $field = new Field();
-        $field -> name = request('name');
-        $field -> location = request('location');
-        $field -> rules = request('rules');
-        $field ->save();
-        return redirect('/admin/fields') -> with('mssg','The field has been created');
+        $role = new Role();
+        $role -> name = request('name');
+        $role ->save();
+        return redirect('/admin/roles') -> with('mssg','The role has been created');
     }
 
     /**
@@ -53,11 +52,11 @@ class FieldController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id)
     {
-        $field = Field::findOrFail($id);
+        $role = Role::findOrFail($id);
         // use the $id variable to query the db for a record
-        return view('admin/fields/show', ['field' => $field]);
+        return view('admin/roles/show', ['role' => $role]);
     }
 
     /**
@@ -66,10 +65,10 @@ class FieldController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(int $id)
     {
-        $field = Field::findOrFail($id);
-        return view('admin/fields/edit', ['field' => $field]);
+        $role = Role::findOrFail($id);
+        return view('admin/roles/edit', ['role' => $role]);
     }
 
     /**
@@ -79,14 +78,14 @@ class FieldController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         $request->validate([
             'name' => 'required'
         ]);
-        $field = Field::findOrFail($id);
-        $field->update($request->all());
-        return redirect('/admin/fields') -> with('mssg','The field has been edited');
+        $role = Role::findOrFail($id);
+        $role->update($request->all());
+        return redirect('/admin/roles') -> with('mssg','The role has been edited');
     }
 
     /**
@@ -95,11 +94,11 @@ class FieldController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
-        $field = Field::findOrFail($id);
-        $field -> delete();
+        $role = Role::findOrFail($id);
+        $role -> delete();
 
-        return redirect('/admin/fields');
+        return redirect('/admin/roles');
     }
 }

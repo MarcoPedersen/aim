@@ -40,7 +40,7 @@
             </tr>
             @foreach($user->fields as $fieldOwner)
                 <tr>
-                    <td>{{ $fieldOwner->field->name }}</td>
+                    <td>{{ $fieldOwner->name }}</td>
                 </tr>
             @endforeach
         </table>

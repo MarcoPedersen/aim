@@ -27,5 +27,5 @@
         @endforeach
         </table>
     </div>
-    <a href="/admin/fields" class="back"> - Back to all fields </a>
+    <a href="/owner/fields" class="back"> - Back to all fields </a>
 @endsection

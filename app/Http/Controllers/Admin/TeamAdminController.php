@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Team;
 use App\Models\User;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class TeamController extends Controller
+class TeamAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -90,8 +91,6 @@ class TeamController extends Controller
             'user_id' => 'required',
         ]);
         $team = Team::findOrFail($id);
-//        var_dump($team->id);
-//        exit();
         $team->update($request->all());
         return redirect('/admin/teams') -> with('mssg','The team has been edited');
     }

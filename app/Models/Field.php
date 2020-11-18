@@ -8,9 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Field extends Model
 {
     use HasFactory;
-    protected $fillable = ['name','location','rules'];
+    protected $fillable = ['name','location','rules', 'email', 'phone', 'website'];
 
     public $timestamps = true;
 
+    public function gameSchedules()
+    {
+        return $this->hasMany('App\Models\GameSchedule');;
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');;
+    }
 
 }

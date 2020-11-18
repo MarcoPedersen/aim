@@ -1,0 +1,8 @@
+#dataTable button, a, form {
+    display: inline-block;
+    margin:0px;
+}
+
+form.form {
+    width: 100%;
+}

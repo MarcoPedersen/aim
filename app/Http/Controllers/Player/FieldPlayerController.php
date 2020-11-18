@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Player;
 
-use App\Models\UserTeam;
+use App\Models\Field;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class TeamMemberController extends Controller
+
+class FieldPlayerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +16,11 @@ class TeamMemberController extends Controller
      */
     public function index()
     {
-        //
+        $fields = Field::orderBy('id','asc')->get();
+
+        return view('player.fields.index', [
+            'fields' => $fields,
+        ]);
     }
 
     /**
@@ -35,12 +41,7 @@ class TeamMemberController extends Controller
      */
     public function store(Request $request)
     {
-        $userTeam = new UserTeam();
-        $userTeam -> user_id = request('user_id');
-        $userTeam -> team_id = request('team_id');
-        $userTeam ->save();
-
-        return redirect('admin/teams/' . $userTeam->team_id . '/edit');
+        //
     }
 
     /**
@@ -85,9 +86,6 @@ class TeamMemberController extends Controller
      */
     public function destroy($id)
     {
-        $member = UserTeam::findOrFail($id);
-        $member -> delete();
-
-        return redirect('admin/teams/' . $member->team_id . '/edit');
+        //
     }
 }

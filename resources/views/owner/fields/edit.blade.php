@@ -2,7 +2,7 @@
 
 @section('content')
     <h1 class="h3 mb-4 text-gray-800">Edit Field</h1>
-    <form class="form" action="{{ route('fields.update', $field->id) }}" method="POST">
+    <form class="form" action="{{ route('owner.fields.update', $field->id) }}" method="POST">
         @csrf
         @method('PUT')
         <input type="hidden" name="id" value="{{ $field->id }}">

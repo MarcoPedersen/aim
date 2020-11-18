@@ -78,11 +78,11 @@ class User extends Authenticatable
     }
 
     /**
-     * Get teams where user belongs
+     * Get fields belonging to this user
      */
     public function fields()
     {
-        return $this->hasMany('App\Models\FieldOwner');
+        return $this->belongsToMany('App\Models\Field', 'field_owners');
     }
 
     public function role()

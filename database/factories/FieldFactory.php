@@ -25,6 +25,9 @@ class FieldFactory extends Factory
             'name' => $this->faker->company,
             'location' => $this->faker->address,
             'rules' => $this->faker->text,
+            'email' => $this->faker->email,
+            'phone' => $this->faker->phoneNumber,
+            'website' => $this->faker->companyEmail,
         ];
     }
 }

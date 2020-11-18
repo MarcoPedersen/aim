@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Player;
 
+use App\Models\Team;
 use App\Models\User;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class TeamPlayerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +16,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('id','asc')->get();
+        $teams = Team::orderBy('id','asc')->get();
 
-        return view('admin.users.index', [
-            'users' => $users,
+        return view('player.teams.index', [
+            'teams' => $teams,
         ]);
     }
 
@@ -28,7 +30,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        return view('player.teams.create');
     }
 
     /**
@@ -39,16 +41,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = new User();
-        $user->first_name = request('first_name');
-        $user->last_name = request('last_name');
-        $user->username = request('username');
-        $user->email = request('email');
-        $user->password = request('password');
-        $user->role_id = request('role_id');
-        $user->save();
+        $team = new Team();
+        $team->name = request('name');
+        $team->user_id = request('user_id');
 
-        return redirect('/admin/users')->with('mssg','The user has been created');
+        $team->save();
+
+        return redirect('player.teams')->with('mssg','The team has been created');
     }
 
     /**
@@ -59,9 +58,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::findOrFail($id);
+        $team = Team::findOrFail($id);
         // use the $id variable to query the db for a record
-        return view('admin/users/show', ['user' => $user]);
+        return view('player.teams.show', ['team' => $team]);
     }
 
     /**
@@ -72,9 +71,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::findOrFail($id);
-        $gamesAttended = $user->gamesAttended;
-        return view('admin/users/edit', ['user' => $user, 'gamesAttended'=> $gamesAttended]);
+        $users = User::orderBy('id','asc')->get();
+        $team = Team::findOrFail($id);
+        $userTeams = $team->userTeams;
+        return view('player.teams.edit', ['team' => $team, 'userTeams'=> $userTeams,'users' => $users]);
     }
 
     /**
@@ -87,15 +87,12 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'username' => 'required',
-            'email' => 'required',
-            'role_id' => 'required',
+            'name' => 'required',
+            'user_id' => 'required',
         ]);
-        $user = User::findOrFail($id);
-        $user->update($request->all());
-        return redirect('/admin/users') -> with('mssg','The user has been edited');
+        $team = Team::findOrFail($id);
+        $team->update($request->all());
+        return redirect('player.teams') -> with('mssg','The team has been edited');
     }
 
     /**
@@ -106,9 +103,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::findOrFail($id);
-        $user -> delete();
+        $team = Team::findOrFail($id);
+        $team -> delete();
 
-        return redirect('/admin/users');
+        return redirect('player.teams');
     }
 }
