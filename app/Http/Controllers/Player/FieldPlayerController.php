@@ -30,7 +30,7 @@ class FieldPlayerController extends Controller
      */
     public function create()
     {
-        //
+        return view('player.fields.create');
     }
 
     /**
@@ -52,7 +52,9 @@ class FieldPlayerController extends Controller
      */
     public function show($id)
     {
-        //
+        $field = Field::findOrFail($id);
+        // use the $id variable to query the db for a record
+        return view('player.fields.show', ['field' => $field]);
     }
 
     /**

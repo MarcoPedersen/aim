@@ -1,4 +1,4 @@
-@extends('admin.layouts.layout')
+@extends('layouts.layout')
 
 @section('content')
     <div class="wrapper field-details">

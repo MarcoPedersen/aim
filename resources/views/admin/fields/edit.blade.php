@@ -1,4 +1,4 @@
-@extends('admin.layouts.layout')
+@extends('layouts.layout')
 
 @section('content')
     <h1 class="h3 mb-4 text-gray-800">Edit Field</h1>

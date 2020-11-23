@@ -1,4 +1,4 @@
-@extends('admin.layouts.layout')
+@extends('layouts.layout')
 
 @section('content')
     <h1 class="h3 mb-4 text-gray-800">Edit user</h1>
@@ -7,10 +7,15 @@
             @csrf
             @method('PUT')
             <input type="hidden" name="id" value="{{ $user->id }}">
+            <label>First name: </label>
             <input type="text" id="first_name" name="first_name" value="{{ $user->first_name }}">
+            <label>Last name: </label>
             <input type="text" id="last_name" name="last_name" value="{{ $user->last_name }}">
+            <label>Username: </label>
             <input type="text" id="username" name="username" value="{{ $user->username }}">
+            <label>Email: </label>
             <input type="text" id="email" name="email" value="{{ $user->email }}">
+            <label>Role Id: </label>
             <input type="text" id="role_id" name="role_id" value="{{ $user->role_id }}">
             <input type="submit" value="Edit user">
         </form>

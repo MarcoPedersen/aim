@@ -6,6 +6,7 @@ use App\Models\Team;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TeamPlayerController extends Controller
 {
@@ -41,13 +42,7 @@ class TeamPlayerController extends Controller
      */
     public function store(Request $request)
     {
-        $team = new Team();
-        $team->name = request('name');
-        $team->user_id = request('user_id');
 
-        $team->save();
-
-        return redirect('player.teams')->with('mssg','The team has been created');
     }
 
     /**

@@ -11,7 +11,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('admin.dashboard') }}">
+        <a class="nav-link" href="{{ route('dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -25,23 +25,26 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('users.index') }}">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Users</span></a>
-    </li>
+    @if(Auth::user()->role_id >= 3)
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('users.index') }}">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Users</span></a>
+        </li>
+    @endif
 
     <li class="nav-item">
         <a class="nav-link" href="{{ route('fields.index') }}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Fields</span></a>
     </li>
-
+    @if(Auth::user()->role_id >= 3)
     <li class="nav-item">
         <a class="nav-link" href="{{ route('roles.index') }}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Roles</span></a>
     </li>
+    @endif
 
     <li class="nav-item">
         <a class="nav-link" href="{{ route('teams.index') }}">

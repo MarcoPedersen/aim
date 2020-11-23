@@ -1,4 +1,4 @@
-@extends('admin.layouts.layout')
+@extends('layouts.layout')
 
 @section('content')
     <h1 class="h3 mb-4 text-gray-800">Fields</h1>
@@ -41,12 +41,7 @@
                             <td>{{ $field->phone }}</td>
                             <td>{{ $field->website }}</td>
                             <td>
-{{--                                <a class="btn btn-primary btn-circle btn-sm" href="{{ route('fields.edit', $field->id) }}"><i class="fa fa-edit"></i></a>--}}
-{{--                                <form action="{{ route('fields.destroy', $field -> id) }}" method="POST">--}}
-{{--                                    @csrf--}}
-{{--                                    @method('DELETE')--}}
-{{--                                    <button class="btn btn-danger btn-circle btn-sm"><i class="far fa-trash-alt"></i></button>--}}
-{{--                                </form>--}}
+                                <a class="btn btn-success btn-circle btn-sm" href="{{ route('player.fields.show', $field->id) }}"><i class="far fa-eye"></i></a>
                             </td>
                         </tr>
                     @endforeach
@@ -55,5 +50,4 @@
             </div>
         </div>
     </div>
-
 @endsection
