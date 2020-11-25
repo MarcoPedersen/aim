@@ -32,13 +32,7 @@
                             <td>{{ $team->user->first_name }} {{ $team->user->last_name }}</td>
                             <td>{{ $team->members->count()}}</td>
                             <td>
-                                <a class="btn btn-success btn-circle btn-sm" href="{{ route('admin.teams.show', $team->id) }}"><i class="fas fa-eye"></i></a>
-                                <a class="btn btn-primary btn-circle btn-sm" href="{{ route('admin.teams.edit', $team->id) }}"><i class="fa fa-edit"></i></a>
-                                <form action="{{ route('admin.teams.destroy', $team->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger btn-circle btn-sm"><i class="far fa-trash-alt"></i></button>
-                                </form>
+                                <a class="btn btn-success btn-circle btn-sm" href="{{ route('owner.teams.show', $team->id) }}"><i class="fas fa-eye"></i></a>
                             </td>
                         </tr>
                     @endforeach

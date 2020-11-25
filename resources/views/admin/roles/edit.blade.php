@@ -3,7 +3,7 @@
 @section('content')
     <h1 class="h3 mb-4 text-gray-800">Edit Role</h1>
     <div class="wrapper edit-role">
-        <form action="{{ route('roles.update', $role->id) }}" method="POST">
+        <form action="{{ route('admin.roles.update', $role->id) }}" method="POST">
             @csrf
             @method('PUT')
             <label for="name">Role name</label>

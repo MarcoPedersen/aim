@@ -3,14 +3,14 @@
 @section('content')
     <h1 class="h3 mb-4 text-gray-800">Edit team</h1>
     <div class="wrapper edit-team">
-        <form action="{{ route('teams.update', $team->id) }}" method="POST">
+        <form action="{{ route('admin.teams.update', $team->id) }}" method="POST">
             @csrf
             @method('PUT')
             <label for="name">Team name</label>
             <input type="text" id="name" name="name" value="{{ $team->name }}">
             <label for="name">User Id</label>
             <input type="text" id="user_id" name="user_id" value="{{ $team->user_id }}">
-            <input type="submit" value="Edit team">
+            <input type="submit" value="Save changes">
         </form>
 
         <h1 class="h3 mb-4 text-gray-800">Teams members</h1>
@@ -51,10 +51,10 @@
                                 <td>{{ $member->user->id }}</td>
                                 <td>{{ $member->user->first_name }} {{ $member->user->last_name }}</td>
                                 <td>
-                                    <form action="{{ route('team-members.destroy', $member->id) }}" method="POST">
+                                    <form action="{{ route('admin.team-members.destroy', $member->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button><i class="far fa-trash-alt"></i></button>
+                                        <button class="btn btn-danger btn-circle btn-sm"><i class="far fa-trash-alt"></i></button>
                                     </form>
                                 </td>
                             </tr>

@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Owner;
 
+use App\Models\GameSchedule;
 use App\Models\Field;
 use App\Models\FieldOwner;
-use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class FieldOwnerController extends Controller
+class GameScheduleOwnerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,22 +17,20 @@ class FieldOwnerController extends Controller
      */
     public function index()
     {
-        $userId = Auth::user()->id;
-        $fields = User::findOrFail($userId)->fields;
-
-        return view('owner.fields.index', [
-            'fields' => $fields,
-        ]);
+        //
     }
 
     /**
      * Show the form for creating a new resource.
      *
+     *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('owner.fields.create');
+        $fieldId = request('field_id');
+
+        return view('owner.game-schedules.create',['fieldId' => $fieldId]);
     }
 
     /**
@@ -44,21 +41,16 @@ class FieldOwnerController extends Controller
      */
     public function store(Request $request)
     {
-        $userId = Auth::user()->id;
-        $user = User::findOrFail($userId);
+        $fieldId = request('field_id');
 
-        $field = new Field();
-        $field -> name = request('name');
-        $field -> location = request('location');
-        $field -> rules = request('rules');
-        $field -> email = request('email');
-        $field -> phone = request('phone');
-        $field -> website = request('website');
-        $field ->save();
+        $gameSchedule= new GameSchedule();
+        $gameSchedule->date = request('date');
+        $gameSchedule->price = request('price');
+        $gameSchedule->limit = request('limit');
+        $gameSchedule->field_id = $fieldId;
+        $gameSchedule->save();
 
-        $user->fields()->save($field);
-
-        return redirect('/owner/fields');
+        return redirect('/owner/fields/' . $fieldId );
     }
 
     /**
@@ -69,9 +61,9 @@ class FieldOwnerController extends Controller
      */
     public function show($id)
     {
-        $field = Field::findOrFail($id);
+        $gameSchedule = GameSchedule::findOrFail($id);
         // use the $id variable to query the db for a record
-        return view('owner.fields.show', ['field' => $field]);
+        return view('owner.game-schedules.show', ['gameSchedule' => $gameSchedule]);
     }
 
     /**
@@ -82,8 +74,8 @@ class FieldOwnerController extends Controller
      */
     public function edit($id)
     {
-        $field = Field::findOrFail($id);
-        return view('owner.fields.edit', ['field' => $field]);
+        $gameSchedule = GameSchedule::findOrFail($id);
+        return view('owner.game-schedules.edit', ['gameSchedule' => $gameSchedule]);
     }
 
     /**
@@ -96,11 +88,14 @@ class FieldOwnerController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required'
+            'date' => 'required',
+            'price' => 'required',
+            'limit' => 'required'
         ]);
-        $field = Field::findOrFail($id);
-        $field->update($request->all());
-        return redirect('/owner/fields');
+        $gameSchedule = GameSchedule::findOrFail($id);
+        $fieldId = $gameSchedule->field->id;
+        $gameSchedule->update($request->all());
+        return redirect('/owner/fields/'. $fieldId);
     }
 
     /**
@@ -111,9 +106,11 @@ class FieldOwnerController extends Controller
      */
     public function destroy($id)
     {
-        $field = Field::findOrFail($id);
-        $field->delete();
+        $gameSchedule = GameSchedule::findOrFail( $id);
+        $fieldId = $gameSchedule->field->id;
+        $gameSchedule->delete();
 
-        return redirect('/owner/fields');
+
+        return redirect('/owner/fields/'. $fieldId);
     }
 }

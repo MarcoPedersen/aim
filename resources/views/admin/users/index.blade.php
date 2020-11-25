@@ -38,8 +38,8 @@
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->role->name }}</td>
                             <td>
-                                <a class="btn btn-primary btn-circle btn-sm"  href="{{ route('users.edit', $user->id) }}"><i class="fa fa-edit"></i></a>
-                                <form action="{{ route('users.destroy', $user -> id) }}" method="POST">
+                                <a class="btn btn-primary btn-circle btn-sm"  href="{{ route('admin.users.edit', $user->id) }}"><i class="fa fa-edit"></i></a>
+                                <form action="{{ route('admin.users.destroy', $user -> id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger btn-circle btn-sm"><i class="far fa-trash-alt"></i></button>

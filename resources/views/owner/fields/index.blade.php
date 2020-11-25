@@ -10,7 +10,6 @@
             <span class="text">Create field</span>
         </a>
     </p>
-
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
@@ -62,5 +61,4 @@
             </div>
         </div>
     </div>
-
 @endsection

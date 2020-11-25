@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers\Owner;
 
-use App\Models\Field;
-use App\Models\FieldOwner;
-use App\Models\User;
+use App\Models\Team;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class FieldOwnerController extends Controller
+class TeamOwnerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,11 +15,10 @@ class FieldOwnerController extends Controller
      */
     public function index()
     {
-        $userId = Auth::user()->id;
-        $fields = User::findOrFail($userId)->fields;
+        $teams = Team::orderBy('id','asc')->get();
 
-        return view('owner.fields.index', [
-            'fields' => $fields,
+        return view('owner.teams.index', [
+            'teams' => $teams,
         ]);
     }
 
@@ -33,7 +29,7 @@ class FieldOwnerController extends Controller
      */
     public function create()
     {
-        return view('owner.fields.create');
+        //
     }
 
     /**
@@ -44,21 +40,7 @@ class FieldOwnerController extends Controller
      */
     public function store(Request $request)
     {
-        $userId = Auth::user()->id;
-        $user = User::findOrFail($userId);
-
-        $field = new Field();
-        $field -> name = request('name');
-        $field -> location = request('location');
-        $field -> rules = request('rules');
-        $field -> email = request('email');
-        $field -> phone = request('phone');
-        $field -> website = request('website');
-        $field ->save();
-
-        $user->fields()->save($field);
-
-        return redirect('/owner/fields');
+        //
     }
 
     /**
@@ -69,9 +51,9 @@ class FieldOwnerController extends Controller
      */
     public function show($id)
     {
-        $field = Field::findOrFail($id);
+        $team = Team::findOrFail($id);
         // use the $id variable to query the db for a record
-        return view('owner.fields.show', ['field' => $field]);
+        return view('owner.teams.show', ['team' => $team]);
     }
 
     /**
@@ -82,8 +64,7 @@ class FieldOwnerController extends Controller
      */
     public function edit($id)
     {
-        $field = Field::findOrFail($id);
-        return view('owner.fields.edit', ['field' => $field]);
+        //
     }
 
     /**
@@ -95,12 +76,7 @@ class FieldOwnerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required'
-        ]);
-        $field = Field::findOrFail($id);
-        $field->update($request->all());
-        return redirect('/owner/fields');
+        //
     }
 
     /**
@@ -111,9 +87,6 @@ class FieldOwnerController extends Controller
      */
     public function destroy($id)
     {
-        $field = Field::findOrFail($id);
-        $field->delete();
-
-        return redirect('/owner/fields');
+        //
     }
 }

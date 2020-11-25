@@ -26,32 +26,31 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     @if(Auth::user()->role_id >= 3)
+
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('users.index') }}">
+            <a class="nav-link" href="{{ route(Auth::user()->role->name. '.users.index') }}">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Users</span></a>
         </li>
     @endif
 
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('fields.index') }}">
+        <a class="nav-link" href="{{ route(Auth::user()->role->name.'.fields.index') }}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Fields</span></a>
     </li>
     @if(Auth::user()->role_id >= 3)
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('roles.index') }}">
+        <a class="nav-link" href="{{ route(Auth::user()->role->name.'.roles.index') }}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Roles</span></a>
     </li>
     @endif
-
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('teams.index') }}">
+        <a class="nav-link" href="{{ route(Auth::user()->role->name.'.teams.index') }}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Teams</span></a>
     </li>
-
     <hr class="sidebar-divider d-none d-md-block">
 
     <!-- Sidebar Toggler (Sidebar) -->

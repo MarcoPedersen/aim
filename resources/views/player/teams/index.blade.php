@@ -33,12 +33,6 @@
                             <td>{{ $team->members->count()}}</td>
                             <td>
                                 <a class="btn btn-success btn-circle btn-sm" href="{{ route('player.teams.show', $team->id) }}"><i class="fas fa-eye"></i></a>
-{{--                                <a class="btn btn-primary btn-circle btn-sm" href=""><i class="fa fa-edit"></i></a>--}}
-{{--                                <form action="{{ route('teams.destroy', $team->id) }}" method="POST">--}}
-{{--                                    @csrf--}}
-{{--                                    @method('DELETE')--}}
-{{--                                    <button class="btn btn-danger btn-circle btn-sm"><i class="far fa-trash-alt"></i></button>--}}
-{{--                                </form>--}}
                             </td>
                         </tr>
                     @endforeach
