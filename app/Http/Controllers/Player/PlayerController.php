@@ -31,12 +31,18 @@ class PlayerController extends Controller
     public  function joinGame (Request $request)
     {
         $userId = Auth::user()->id;
-
         $user = User::findOrFail($userId);
         $gameScheduleId = $request->input('game_schedule_id');
         $gameSchedule = GameSchedule::findOrFail($gameScheduleId);
-        $user->gameSchedule()->save($gameSchedule);
 
-        return redirect()->route('player.fields.show'. $gameSchedule->field->id);
+        $userCheck = $gameSchedule->players()
+            ->where('user_id', $userId)
+            ->get();
+
+        if ($userCheck->isEmpty()) {
+            $gameSchedule->players()->save($user);
+        }
+
+        return redirect()->route('player.fields.show', ['field' => $gameSchedule->field->id]);
     }
 }

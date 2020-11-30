@@ -28,7 +28,8 @@
                <td>{{ $gameSchedule->players->count()}}</td>
 
                <td>
-                   <form action="{{ route('player.join-game', $gameSchedule -> id) }}" method="POST">
+                   <form action="{{ route('player.join-game')}}" method="POST">
+                       <input type="hidden" name="game_schedule_id" value="{{ $gameSchedule->id }}">
                        @csrf
                        <button class="btn btn-primary btn-circle btn-sm"><i class="fas fa-user-plus"></i></button>
                    </form>
