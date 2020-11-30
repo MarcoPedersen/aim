@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Player;
 
+use App\Models\GameSchedule;
 use App\Models\Team;
 use App\Models\User;
 use App\Http\Controllers\Controller;
@@ -25,5 +26,17 @@ class PlayerController extends Controller
         $user->teams()->save($team);
 
         return redirect()->route('player.teams.show', [$teamId]);
+    }
+
+    public  function joinGame (Request $request)
+    {
+        $userId = Auth::user()->id;
+
+        $user = User::findOrFail($userId);
+        $gameScheduleId = $request->input('game_schedule_id');
+        $gameSchedule = GameSchedule::findOrFail($gameScheduleId);
+        $user->gameSchedule()->save($gameSchedule);
+
+        return redirect()->route('player.fields.show'. $gameSchedule->field->id);
     }
 }

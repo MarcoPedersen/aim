@@ -18,4 +18,6 @@ class GameSchedulePlayer extends Model
     {
         return $this->belongsTo('App\Models\GameSchedule');;
     }
+
+
 }

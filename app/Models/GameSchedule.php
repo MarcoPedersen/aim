@@ -20,4 +20,12 @@ class GameSchedule extends Model
     {
         return $this->belongsTo('App\Models\Field');;
     }
+
+    /**
+     * Get all users belonging to this game_schedule through the game_schedule_players table
+     */
+    public function players()
+    {
+        return $this->belongsToMany('App\Models\User', 'game_schedule_players');
+    }
 }

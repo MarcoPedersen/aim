@@ -14,17 +14,20 @@
                         <thead>
                         <tr>
                             <th>Name</th>
+                            <th>Username</th>
                         </tr>
                         </thead>
                         <tfoot>
                         <tr>
                             <th>Name</th>
+                            <th>Username</th>
                         </tr>
                         </tfoot>
                         <tbody>
                         @foreach($team->members as $member)
                             <tr>
                                 <td>{{ $member->user->first_name }} {{ $member->user->last_name }}</td>
+                                <td>{{ $member->user->username }}</td>
                             </tr>
                         @endforeach
                         </tbody>

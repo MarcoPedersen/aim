@@ -16,6 +16,8 @@
                 <th>Date</th>
                 <th>Price</th>
                 <th>Limit</th>
+                <th>Players attending</th>
+                <th>Action</th>
             </tr>
             </thead>
         @foreach($field->gameSchedules as $gameSchedule)
@@ -23,6 +25,15 @@
                <td>{{ $gameSchedule->date }}</td>
                <td>{{ $gameSchedule->price }}</td>
                <td>{{ $gameSchedule->limit }}</td>
+               <td>{{ $gameSchedule->players->count()}}</td>
+
+               <td>
+                   <form action="{{ route('player.join-game', $gameSchedule -> id) }}" method="POST">
+                       @csrf
+                       <button class="btn btn-primary btn-circle btn-sm"><i class="fas fa-user-plus"></i></button>
+                   </form>
+               </td>
+
            </tr>
         @endforeach
         </table>

@@ -24,6 +24,7 @@
                 <th>Date</th>
                 <th>Price</th>
                 <th>Limit</th>
+                <th>Players attending</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -32,6 +33,7 @@
                <td>{{ $gameSchedule->date }}</td>
                <td>{{ $gameSchedule->price }}</td>
                <td>{{ $gameSchedule->limit }}</td>
+               <td>{{ $gameSchedule->players->count()}}</td>
                <td>
                    <a class="btn btn-primary btn-circle btn-sm" href="{{ route('owner.game-schedules.edit', $gameSchedule->id) }}"><i class="fa fa-edit"></i></a>
                    <form action="{{ route('owner.game-schedules.destroy', $gameSchedule -> id) }}" method="POST">

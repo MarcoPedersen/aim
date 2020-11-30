@@ -16,6 +16,7 @@
                 <th>Date</th>
                 <th>Price</th>
                 <th>Limit</th>
+                <th>Players attending</th>
             </tr>
             </thead>
         @foreach($field->gameSchedules as $gameSchedule)
@@ -23,6 +24,7 @@
                <td>{{ $gameSchedule->date }}</td>
                <td>{{ $gameSchedule->price }}</td>
                <td>{{ $gameSchedule->limit }}</td>
+               <td>{{ $gameSchedule->players->count()}}</td>
            </tr>
         @endforeach
         </table>

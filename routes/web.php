@@ -60,6 +60,7 @@ Route::group(['as'=>'player.','prefix'=>'player'], function (){
     Route::resource('teams', TeamPlayerController::class);
     Route::get('dashboard', [PlayerController::class, 'dashboard'])->name('dashboard');
     Route::post('join-team', [PlayerController::class, 'joinTeam'])->name('join-team');
+    Route::post('join-game', [PlayerController::class, 'joinGame'])->name('join-game');
 
 });
 
