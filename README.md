@@ -35,4 +35,3 @@ https://github.com/MarcoPedersen/aim
 5. Run seeders  `php artisan db:seed`
 6. Start application `php artisan serve`
 7. Open http://127.0.0.1:8000 in a web browser.
-

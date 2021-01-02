@@ -39,7 +39,18 @@
                 <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
             </div>
 
-            <x-jet-input id="role_id" class="block mt-1 w-full" type="hidden" name="role_id" :value="1"/>
+
+{{--            <x-jet-input id="role_id" class="block mt-1 w-full" type="hidden" name="role_id" :value="1"/>--}}
+
+            <div class="mt-4">
+                <x-jet-label for="role_selection" value="{{ __('Select role') }}" />
+                    <label for="role">Choose a Role:</label>
+                    <select name="role_id" id="role_id" class="block mt-1 w-full">
+                    @foreach($roles as $role)
+                        <option value="{{$role->id}}">{{$role->name}}</option>
+                    @endforeach
+                    </select>
+            </div>
 
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
