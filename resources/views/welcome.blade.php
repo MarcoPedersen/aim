@@ -22,7 +22,7 @@
                 @if (Route::has('login'))
                    <p>
                         @auth
-                            <a href="{{ url('/dashboard') }}" class="btn btn-primary my-2">Home</a>
+                            <a href="{{ route(Auth::user()->role->name. '.dashboard') }}" class="btn btn-primary my-2">Home</a>
                         @else
                             <a href="{{ route('login') }}" class="btn btn-primary my-2">Login</a>
 

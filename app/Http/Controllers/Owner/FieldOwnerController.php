@@ -18,8 +18,7 @@ class FieldOwnerController extends Controller
      */
     public function index()
     {
-        $userId = Auth::user()->id;
-        $fields = User::findOrFail($userId)->fields;
+        $fields = Field::orderBy('id','asc')->get();
 
         return view('owner.fields.index', [
             'fields' => $fields,
