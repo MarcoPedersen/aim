@@ -39,8 +39,9 @@
                 </div>
             </div>
             <button type="submit" class="btn btn-primary ">Submit</button>
+
         </form>
-        <h1>Games attended</h1>
+        <h1 class="h3 mb-4 text-gray-800 mt-4">Games attended</h1>
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <tr>
                 <th>Date</th>
@@ -59,7 +60,7 @@
             </tr>
         @endforeach
         </table>
-        <h1>My fields</h1>
+        <h1 class="h3 mb-4 text-gray-800">My fields</h1>
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             @foreach($user->fields as $fieldOwner)
                 <tr>
@@ -68,7 +69,7 @@
             @endforeach
         </table>
 
-        <h1>My teams</h1>
+        <h1 class="h3 mb-4 text-gray-800">My teams</h1>
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             @foreach($user->userTeams as $userTeam)
                 <tr>
@@ -77,7 +78,7 @@
             @endforeach
         </table>
 
-        <h1>Teams I own</h1>
+        <h1 class="h3 mb-4 text-gray-800">Teams I own</h1>
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             @foreach($user->teamsOwned as $teamOwned)
                 <tr>

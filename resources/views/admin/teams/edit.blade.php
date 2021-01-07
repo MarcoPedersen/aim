@@ -3,28 +3,41 @@
 @section('content')
     <h1 class="h3 mb-4 text-gray-800">Edit team</h1>
     <div class="wrapper edit-team">
-        <form action="{{ route('admin.teams.update', $team->id) }}" method="POST">
+        <form class="form" action="{{ route('admin.teams.update', $team->id) }}" method="POST">
             @csrf
             @method('PUT')
-            <label for="name">Team name</label>
-            <input type="text" id="name" name="name" value="{{ $team->name }}">
-            <label for="name">User Id</label>
-            <input type="text" id="user_id" name="user_id" value="{{ $team->user_id }}">
-            <input type="submit" value="Save changes">
+
+            <div class="form-group row">
+                <label for="name" class="col-sm-2 col-form-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" name="name" class="form-control" id="name" value="{{ $team->name }}">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="name" class="col-sm-2 col-form-label">Owner</label>
+                <div class="col-sm-10">
+                    <select class="form-control" name="user_id" id="user_id">
+                        @foreach($users as $user)
+                            <option value="{{ $user -> id }}">{{ $user -> first_name }} {{ $user -> last_name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary float-right">Update</button>
         </form>
 
         <h1 class="h3 mb-4 text-gray-800">Teams members</h1>
-
-        <form action="/admin/team-members" method="POST">
+        <form class="form-inline" action="/admin/team-members" method="POST">
             @csrf
             <input type="hidden" name="team_id" value="{{$team->id}}">
-            <label for="name">user</label>
-            <select name="user_id" id="user_id">
-                @foreach($users as $user)
-                <option value="{{ $user -> id }}">{{ $user -> first_name }} {{ $user -> last_name }}</option>
-                @endforeach
-            </select>
-            <input type="submit" value="Add to team">
+            <div class="form-group mb-2">
+                <select class="form-control" name="user_id" id="user_id">
+                    @foreach($users as $user)
+                        <option value="{{ $user -> id }}">{{ $user -> first_name }} {{ $user -> last_name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Add to team</button>
         </form>
 
         <div class="card shadow mb-4">
