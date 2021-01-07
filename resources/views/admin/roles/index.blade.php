@@ -2,6 +2,14 @@
 
 @section('content')
     <h1 class="h3 mb-4 text-gray-800">Roles</h1>
+    <p>
+        <a href="{{ route('admin.roles.create') }}" class="btn btn-success btn-icon-split">
+            <span class="icon text-white-50">
+                <i class="fas fa-plus"></i>
+            </span>
+            <span class="text">Create role</span>
+        </a>
+    </p>
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">

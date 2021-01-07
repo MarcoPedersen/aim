@@ -7,20 +7,41 @@
             @csrf
             @method('PUT')
             <input type="hidden" name="id" value="{{ $user->id }}">
-            <label>First name: </label>
-            <input type="text" id="first_name" name="first_name" value="{{ $user->first_name }}">
-            <label>Last name: </label>
-            <input type="text" id="last_name" name="last_name" value="{{ $user->last_name }}">
-            <label>Username: </label>
-            <input type="text" id="username" name="username" value="{{ $user->username }}">
-            <label>Email: </label>
-            <input type="text" id="email" name="email" value="{{ $user->email }}">
-            <label>Role Id: </label>
-            <input type="text" id="role_id" name="role_id" value="{{ $user->role_id }}">
-            <input type="submit" value="Edit user">
+
+            <div class="form-group row">
+                <label for="name" class="col-sm-2 col-form-label">First name: </label>
+                <div class="col-sm-10">
+                    <input type="text" name="first_name" class="form-control" id="first_name" value="{{ $user->first_name }}">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="name" class="col-sm-2 col-form-label">Last name: </label>
+                <div class="col-sm-10">
+                    <input type="text" name="last_name" class="form-control" id="last_name" value="{{ $user->last_name }}">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="name" class="col-sm-2 col-form-label">User name: </label>
+                <div class="col-sm-10">
+                    <input type="text" name="username" class="form-control" id="username" value="{{ $user->username }}">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="name" class="col-sm-2 col-form-label">Email: </label>
+                <div class="col-sm-10">
+                    <input type="text" name="email" class="form-control" id="email" value="{{ $user->email }}">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="name" class="col-sm-2 col-form-label">Role Id: </label>
+                <div class="col-sm-10">
+                    <input type="text" name="role_id" class="form-control" id="role_id" value="{{ $user->role_id }}">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary ">Submit</button>
         </form>
         <h1>Games attended</h1>
-        <table>
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <tr>
                 <th>Date</th>
                 <th>Field</th>
@@ -39,10 +60,7 @@
         @endforeach
         </table>
         <h1>My fields</h1>
-        <table>
-            <tr>
-                <th>field name</th>
-            </tr>
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             @foreach($user->fields as $fieldOwner)
                 <tr>
                     <td>{{ $fieldOwner->name }}</td>
@@ -51,10 +69,7 @@
         </table>
 
         <h1>My teams</h1>
-        <table>
-            <tr>
-                <th>team name</th>
-            </tr>
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             @foreach($user->userTeams as $userTeam)
                 <tr>
                     <td>{{ $userTeam->team->name }}</td>
@@ -63,10 +78,7 @@
         </table>
 
         <h1>Teams I own</h1>
-        <table>
-            <tr>
-                <th>team name</th>
-            </tr>
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             @foreach($user->teamsOwned as $teamOwned)
                 <tr>
                     <td>{{ $teamOwned->name }}</td>

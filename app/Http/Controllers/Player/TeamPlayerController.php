@@ -42,7 +42,14 @@ class TeamPlayerController extends Controller
      */
     public function store(Request $request)
     {
+        $userId = Auth::user()->id;
 
+        $team = new Team();
+        $team->name = request('name');
+        $team->user_id = $userId;
+        $team->save();
+
+        return redirect('/player/teams')->with('mssg','The team has been created');
     }
 
     /**

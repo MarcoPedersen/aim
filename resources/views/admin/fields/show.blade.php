@@ -1,8 +1,8 @@
 @extends('layouts.layout')
 
 @section('content')
+    <h1 class="h1 mb-4 text-gray-800">{{ $field->name }}</h1>
     <div class="wrapper field-details">
-        <h1>{{ $field->name }}</h1>
         <img src="{{ asset('img/example_map.JPG') }}">
         <h2>Address:</h2><p>{{ $field->location }}</p>
         <h2>Email: </h2><p>{{ $field->email }}</p>
