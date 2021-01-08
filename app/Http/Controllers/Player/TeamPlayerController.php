@@ -94,7 +94,7 @@ class TeamPlayerController extends Controller
         ]);
         $team = Team::findOrFail($id);
         $team->update($request->all());
-        return redirect('player.teams') -> with('mssg','The team has been edited');
+        return redirect('player/teams') -> with('mssg','The team has been edited');
     }
 
     /**
@@ -108,6 +108,6 @@ class TeamPlayerController extends Controller
         $team = Team::findOrFail($id);
         $team -> delete();
 
-        return redirect('player.teams');
+        return redirect('/player/teams');
     }
 }

@@ -2,6 +2,14 @@
 
 @section('content')
     <h1 class="h3 mb-4 text-gray-800">Teams</h1>
+    <p>
+        <a href="{{ route('player.teams.create') }}" class="btn btn-success btn-icon-split">
+            <span class="icon text-white-50">
+                <i class="fas fa-plus"></i>
+            </span>
+            <span class="text">Create team</span>
+        </a>
+    </p>
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
@@ -33,6 +41,11 @@
                             <td>{{ $team->members->count()}}</td>
                             <td>
                                 <a class="btn btn-success btn-circle btn-sm" href="{{ route('player.teams.show', $team->id) }}"><i class="fas fa-eye"></i></a>
+                                <form action="{{ route('player.teams.destroy', $team -> id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger btn-circle btn-sm"><i class="far fa-trash-alt"></i></button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
