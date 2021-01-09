@@ -75,7 +75,9 @@ class UserAdminController extends Controller
     {
         $user = User::findOrFail($id);
         $gamesAttended = $user->gamesAttended;
-        return view('admin/users/edit', ['user' => $user, 'gamesAttended'=> $gamesAttended]);
+        return view('admin/users/edit', [
+            'user' => $user, 'gamesAttended'=> $gamesAttended
+        ]);
     }
 
     /**

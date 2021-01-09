@@ -13,7 +13,12 @@ class PlayerController extends Controller
 {
     public function dashboard()
     {
+        $userId = Auth::user()->id;
+        $user = User::findOrFail($userId);
+        $teams = $user->teams;
+        $gamesAttended = $user->gamesAttended;
         return view('player.dashboard', [
+            'teams' =>  $teams, 'gamesAttended'=> $gamesAttended
         ]);
     }
 
