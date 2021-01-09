@@ -61,6 +61,7 @@ Route::group(['as'=>'player.','prefix'=>'player'], function (){
     Route::get('dashboard', [PlayerController::class, 'dashboard'])->name('dashboard');
     Route::post('join-team', [PlayerController::class, 'joinTeam'])->name('join-team');
     Route::post('join-game', [PlayerController::class, 'joinGame'])->name('join-game');
+    Route::delete('leave-game', [PlayerController::class, 'leaveGame'])->name('leave-game');
 
 });
 

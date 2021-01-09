@@ -50,4 +50,6 @@ class PlayerController extends Controller
 
         return redirect()->route('player.fields.show', ['field' => $gameSchedule->field->id]);
     }
+
+
 }

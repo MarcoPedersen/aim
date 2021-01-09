@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Player;
 
 use App\Models\Field;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class FieldPlayerController extends Controller
@@ -52,9 +54,13 @@ class FieldPlayerController extends Controller
      */
     public function show($id)
     {
+        $userId = Auth::user()->id;
+        $user = User::findOrFail($userId);
+        $gamesAttended = $user->gamesAttended;
+        $gamesAttendedId =$gamesAttended->pluck('game_schedule_id')->toArray();
+
         $field = Field::findOrFail($id);
-        // use the $id variable to query the db for a record
-        return view('player.fields.show', ['field' => $field]);
+        return view('player.fields.show', ['field' => $field, 'gamesAttendedId' => $gamesAttendedId]);
     }
 
     /**

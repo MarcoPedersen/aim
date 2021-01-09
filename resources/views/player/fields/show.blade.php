@@ -28,13 +28,16 @@
                <td>{{ $gameSchedule->players->count()}}</td>
 
                <td>
+                   @if(!in_array($gameSchedule->id, $gamesAttendedId))
                    <form action="{{ route('player.join-game')}}" method="POST">
                        <input type="hidden" name="game_schedule_id" value="{{ $gameSchedule->id }}">
                        @csrf
                        <button class="btn btn-primary btn-circle btn-sm"><i class="fas fa-user-plus"></i></button>
                    </form>
+                   @else
+                       <button class="btn btn-danger btn-circle btn-sm"><i class="far fa-trash-alt"></i></button>
+                   @endif
                </td>
-
            </tr>
         @endforeach
         </table>
