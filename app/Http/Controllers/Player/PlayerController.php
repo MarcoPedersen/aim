@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Player;
 
 use App\Models\GameSchedule;
+use App\Models\GameSchedulePlayer;
 use App\Models\Team;
 use App\Models\User;
 use App\Http\Controllers\Controller;
@@ -51,5 +52,14 @@ class PlayerController extends Controller
         return redirect()->route('player.fields.show', ['field' => $gameSchedule->field->id]);
     }
 
+    public  function leaveGame (Request $request)
+    {
+        $gameScheduleId = $request->input('game_schedule_id');
+        $userId = Auth::user()->id;
+        $user = User::findOrFail($userId);
+        $user->gamesAttended()->where('game_schedule_id',$gameScheduleId)->delete();
+
+        return redirect()->back();
+    }
 
 }

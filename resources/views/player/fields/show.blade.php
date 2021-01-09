@@ -35,7 +35,12 @@
                        <button class="btn btn-primary btn-circle btn-sm"><i class="fas fa-user-plus"></i></button>
                    </form>
                    @else
-                       <button class="btn btn-danger btn-circle btn-sm"><i class="far fa-trash-alt"></i></button>
+                       <form action="{{ route('player.leave-game')}}" method="POST">
+                           <input type="hidden" name="game_schedule_id" value="{{ $gameSchedule->id }}">
+                           @csrf
+                           @method('DELETE')
+                           <button class="btn btn-danger btn-circle btn-sm"><i class="far fa-trash-alt"></i></button>
+                       </form>
                    @endif
                </td>
            </tr>
