@@ -47,6 +47,8 @@ class FieldAdminController extends Controller
         $field -> email = request('email');
         $field -> phone = request('phone');
         $field -> website = request('website');
+        $field -> latitude = request('latitude');
+        $field -> longitude = request('longitude');
         $field ->save();
         return redirect('/admin/fields');
     }
@@ -60,8 +62,14 @@ class FieldAdminController extends Controller
     public function show($id)
     {
         $field = Field::findOrFail($id);
-        // use the $id variable to query the db for a record
-        return view('admin/fields/show', ['field' => $field]);
+        $fieldLocations = null;
+        if (!empty($field->latitude && !empty($field->longitude))){
+            $fieldLocations[] = ['lat'=>$field->latitude,'lng'=>$field->longitude];
+        }
+        return view('admin/fields/show', [
+            'field' => $field,
+            'fieldLocations' => json_encode($fieldLocations)
+        ]);
     }
 
     /**

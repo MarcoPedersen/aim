@@ -2,13 +2,33 @@
 
 @section('content')
     <h1 class="h1 mb-4 text-gray-800">{{ $field->name }}</h1>
-    <div class="wrapper field-details">
-        <img src="{{ asset('img/example_map.JPG') }}">
-        <h2>Address:</h2><p>{{ $field->location }}</p>
-        <h2>Email: </h2><p>{{ $field->email }}</p>
-        <h2>Phone: </h2><p>{{ $field->phone }}</p>
-        <h2>Website: </h2><p>{{ $field->website }}</p>
-        <h2>Rules: </h2><p>{{ $field->rules }}</p>
+
+    @if($fieldLocations)
+        @include('maps.index', array('fieldLocations'=>$fieldLocations))
+    @endif
+
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <tr>
+                <td>Address:</td>
+                <td>{{ $field->location }}</td>
+            </tr>
+            <tr>
+                <td>Email: </td>
+                <td>{{ $field->email }}</td>
+            </tr>
+            <tr>
+                <td>Phone: </td>
+                <td>{{ $field->phone }}</td>
+            </tr>
+            <tr>
+                <td>Website:</td>
+                <td>{{ $field->website }}</td>
+            </tr>
+            <tr>
+                <td>Rules:</td>
+                <td>{{ $field->rules }}</td>
+            </tr>
+        </table>
         <h2>Schedules: </h2>
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
@@ -28,6 +48,6 @@
            </tr>
         @endforeach
         </table>
-    </div>
+
     <a href="/admin/fields" class="back"> - Back to all fields </a>
 @endsection

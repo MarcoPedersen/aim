@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\IndexController;
+
 use App\Http\Controllers\Admin\RoleAdminController;
 use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\Admin\FieldAdminController;
@@ -16,7 +18,6 @@ use App\Http\Controllers\Owner\TeamOwnerController;
 
 use App\Http\Controllers\Player\FieldPlayerController;
 use App\Http\Controllers\Player\TeamPlayerController;
-
 use App\Http\Controllers\Player\PlayerController;
 
 /*
@@ -30,9 +31,7 @@ use App\Http\Controllers\Player\PlayerController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [IndexController::class, 'welcome'])->name('welcome');
 
 Route::group(['as'=>'admin.','prefix'=>'admin'], function (){
 

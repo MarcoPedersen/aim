@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Field extends Model
 {
     use HasFactory;
-    protected $fillable = ['name','location','rules', 'email', 'phone', 'website'];
+    protected $fillable = ['name','location','rules', 'email', 'phone', 'website','latitude','longitude'];
 
     public $timestamps = true;
 

@@ -58,9 +58,16 @@ class FieldPlayerController extends Controller
         $user = User::findOrFail($userId);
         $gamesAttended = $user->gamesAttended;
         $gamesAttendedId =$gamesAttended->pluck('game_schedule_id')->toArray();
-
         $field = Field::findOrFail($id);
-        return view('player.fields.show', ['field' => $field, 'gamesAttendedId' => $gamesAttendedId]);
+        $fieldLocations = [
+            ['lat'=>$field->latitude,'lng'=>$field->longitude]
+        ];
+
+        return view('player.fields.show', [
+            'field' => $field,
+            'gamesAttendedId' => $gamesAttendedId,
+            'fieldLocations' => json_encode($fieldLocations)
+        ]);
     }
 
     /**

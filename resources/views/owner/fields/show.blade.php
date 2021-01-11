@@ -2,8 +2,10 @@
 
 @section('content')
     <h1 class="h1 mb-4 text-gray-800">{{ $field->name }}</h1>
-    <div class="wrapper field-details">
-        <img src="{{ asset('img/example_map.JPG') }}">
+
+    @if($fieldLocations)
+        @include('maps.index', array('fieldLocations'=>$fieldLocations))
+    @endif
 
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <tr>
@@ -26,7 +28,6 @@
                 <td>Rules:</td>
                 <td>{{ $field->rules }}</td>
             </tr>
-
         </table>
 
         <h1 class="h1 mb-4 text-gray-800">Schedules</h1>
@@ -65,6 +66,5 @@
            </tr>
         @endforeach
         </table>
-    </div>
     <a href="/owner/fields" class="back"> - Back to all fields </a>
 @endsection

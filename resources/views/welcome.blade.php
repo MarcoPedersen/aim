@@ -36,15 +36,15 @@
         </div>
     </section>
 
-    <section class="py-3 text-center container">
+    <div class="py-5">
         <div class="row">
-            <div class="col-lg-6 col-md-8 mx-auto">
-                <img src="{{ asset('img/proper_map.JPG') }}" width="100%">
+            <div class="col">
+                @include('maps.index', array('fieldLocations'=>$fieldLocations))
             </div>
         </div>
-    </section>
+    </div>
 
-    <div class="album py-5 bg-light">
+    <div class="album py-5 bg-light" style="clear:both">
         <div class="container">
 
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -105,7 +105,9 @@
         <p class="mb-0">Marco Vang Pedersen.</p>
     </div>
 </footer>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+
 </body>
 </html>
