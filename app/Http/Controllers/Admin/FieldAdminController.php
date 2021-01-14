@@ -98,7 +98,7 @@ class FieldAdminController extends Controller
         ]);
         $field = Field::findOrFail($id);
         $field->update($request->all());
-        return redirect('/admin/fields') -> with('mssg','The field has been edited');
+        return redirect()->back();
     }
 
     /**

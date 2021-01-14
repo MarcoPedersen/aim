@@ -43,17 +43,16 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="latitude" class="col-sm-2 col-form-label">Latitude</label>
-            <div class="col-sm-10">
-                <input type="text" name="latitude" class="form-control" id="latitude" value="{{ $field->latitude }}">
+            <div class="col-sm-12">
+                <button type="submit" class="btn btn-primary float-right">Submit</button>
             </div>
         </div>
         <div class="form-group row">
-            <label for="longitude" class="col-sm-2 col-form-label">Longitude</label>
-            <div class="col-sm-10">
-                <input type="text" name="longitude" class="form-control" id="longitude" value="{{ $field->longitude }}">
+            <div class="col-sm-12">
+                @include('maps.edit', array('location' => $field->location))
             </div>
         </div>
-        <button type="submit" class="btn btn-primary float-right">Submit</button>
+        <input type="hidden" name="latitude" class="form-control" id="latitude" value="{{ $field->latitude }}">
+        <input type="hidden" name="longitude" class="form-control" id="longitude" value="{{ $field->longitude }}">
     </form>
 @endsection

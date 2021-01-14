@@ -40,18 +40,13 @@
                 <input type="text" name="website" class="form-control" id="website">
             </div>
         </div>
+
         <div class="form-group row">
-            <label for="latitude" class="col-sm-2 col-form-label">Latitude</label>
-            <div class="col-sm-10">
-                <input type="text" name="latitude" class="form-control" id="latitude">
+            <div class="col-sm-12">
+                @include('maps.create', array())
             </div>
         </div>
-        <div class="form-group row">
-            <label for="longitude" class="col-sm-2 col-form-label">Longitude</label>
-            <div class="col-sm-10">
-                <input type="text" name="longitude" class="form-control" id="longitude">
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary float-right">Submit</button>
+        <input type="hidden" name="latitude" class="form-control" id="latitude">
+        <input type="hidden" name="longitude" class="form-control" id="longitude">
     </form>
 @endsection

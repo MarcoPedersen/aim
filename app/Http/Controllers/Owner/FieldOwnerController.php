@@ -107,7 +107,7 @@ class FieldOwnerController extends Controller
         ]);
         $field = Field::findOrFail($id);
         $field->update($request->all());
-        return redirect('/owner/fields');
+        return redirect()->back();
     }
 
     /**
