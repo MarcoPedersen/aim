@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
+use App\Rules\Captcha;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -26,6 +27,7 @@ class CreateNewUser implements CreatesNewUsers
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
             'role_id' => ['required', 'integer'],
+            'g-recaptcha-response' => new Captcha(),
         ])->validate();
 
         return User::create([

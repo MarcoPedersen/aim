@@ -135,6 +135,18 @@ return [
     'google_map_key' => env('GOOGLE_MAP_KEY'),
 
     /*
+   |--------------------------------------------------------------------------
+   | Google Recapcha key
+   |--------------------------------------------------------------------------
+   |
+   | This key is used by google as an API key to authenticate use of their products.
+   |
+   */
+
+    'google_recaptcha_key' => env('GOOGLE_RECAPTCHA_KEY'),
+    'google_recaptcha_secret' => env('GOOGLE_RECAPTCHA_SECRET'),
+
+    /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
     |--------------------------------------------------------------------------
