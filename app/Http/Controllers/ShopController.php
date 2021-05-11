@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Models\Field;
+use App\Models\Shop;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class FieldAdminController extends Controller
+class ShopController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +15,9 @@ class FieldAdminController extends Controller
      */
     public function index()
     {
-        $fields = Field::orderBy('id', 'asc')->get();
+        $shops = Shop::orderBy('id', 'asc')->get();
 
-        return view('admin.fields.index', [
-            'fields' => $fields,
-        ]);
+        return view([]);
     }
 
     /**
@@ -29,7 +27,7 @@ class FieldAdminController extends Controller
      */
     public function create()
     {
-        return view('admin.fields.create');
+        return view();
     }
 
     /**
@@ -40,17 +38,16 @@ class FieldAdminController extends Controller
      */
     public function store(Request $request)
     {
-        $field = new Field();
-        $field->name = request('name');
-        $field->location = request('location');
-        $field->rules = request('rules');
-        $field->email = request('email');
-        $field->phone = request('phone');
-        $field->website = request('website');
-        $field->latitude = request('latitude');
-        $field->longitude = request('longitude');
-        $field->save();
-        return redirect('/admin/fields');
+        $shop = new Shop();
+        $shop->name = request('name');
+        $shop->location = request('location');
+        $shop->email = request('email');
+        $shop->phone = request('phone');
+        $shop->website = request('website');
+        $shop->latitude = request('latitude');
+        $shop->longitude = request('longitude');
+        $shop->save();
+        return redirect('');
     }
 
     /**
@@ -61,14 +58,14 @@ class FieldAdminController extends Controller
      */
     public function show($id)
     {
-        $field = Field::findOrFail($id);
-        $fieldLocations = null;
-        if (!empty($field->latitude && !empty($field->longitude))) {
-            $fieldLocations[] = ['lat' => $field->latitude, 'lng' => $field->longitude];
+        $shop = Shop::findOrFail($id);
+        $shopLocations = null;
+        if (!empty($shop->latitude && !empty($field->longitude))) {
+            $shopLocations[] = ['lat' => $shop->latitude, 'lng' => $shop->longitude];
         }
-        return view('admin/fields/show', [
-            'field' => $field,
-            'fieldLocations' => json_encode($fieldLocations)
+        return view([
+            'shop' => $shop,
+            'shopLocations ' => json_encode($shopLocations)
         ]);
     }
 
@@ -80,8 +77,8 @@ class FieldAdminController extends Controller
      */
     public function edit($id)
     {
-        $field = Field::findOrFail($id);
-        return view('admin/fields/edit', ['field' => $field]);
+        $shop = Shop::findOrFail($id);
+        return view([]);
     }
 
     /**
@@ -96,8 +93,8 @@ class FieldAdminController extends Controller
         $request->validate([
             'name' => 'required'
         ]);
-        $field = Field::findOrFail($id);
-        $field->update($request->all());
+        $shop = Shop::findOrFail($id);
+        $shop->update($request->all());
         return redirect()->back();
     }
 
@@ -109,9 +106,9 @@ class FieldAdminController extends Controller
      */
     public function destroy($id)
     {
-        $field = Field::findOrFail($id);
-        $field->delete();
+        $shop = Shop::findOrFail($id);
+        $shop->delete();
 
-        return redirect('/admin/fields');
+        return redirect('');
     }
 }
