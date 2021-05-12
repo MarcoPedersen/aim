@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Shop;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ShopController extends Controller
+class ShopAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,9 @@ class ShopController extends Controller
     {
         $shops = Shop::orderBy('id', 'asc')->get();
 
-        return view([]);
+        return view([
+            'fields' => $shops,
+        ]);
     }
 
     /**

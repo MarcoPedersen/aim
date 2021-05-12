@@ -1,15 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Player;
+namespace App\Http\Controllers;
 
-use App\Models\Field;
-use App\Models\User;
+use App\Models\Shop;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-
-class FieldPlayerController extends Controller
+class ShopOwnerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,10 +15,10 @@ class FieldPlayerController extends Controller
      */
     public function index()
     {
-        $fields = Field::orderBy('id','asc')->get();
+        $shops = Shop::orderBy('id', 'asc')->get();
 
-        return view('player.fields.index', [
-            'fields' => $fields,
+        return view([
+            'fields' => $shops,
         ]);
     }
 
@@ -32,7 +29,7 @@ class FieldPlayerController extends Controller
      */
     public function create()
     {
-        return view('player.fields.create');
+        //
     }
 
     /**
@@ -54,19 +51,14 @@ class FieldPlayerController extends Controller
      */
     public function show($id)
     {
-        $userId = Auth::user()->id;
-        $user = User::findOrFail($userId);
-        $gamesAttended = $user->gamesAttended;
-        $gamesAttendedId =$gamesAttended->pluck('game_schedule_id')->toArray();
-        $field = Field::findOrFail($id);
-        $fieldLocations = [
-            ['lat'=>$field->latitude,'lng'=>$field->longitude]
-        ];
-
-        return view('player.fields.show', [
-            'field' => $field,
-            'gamesAttendedId' => $gamesAttendedId,
-            'fieldLocations' => json_encode($fieldLocations)
+        $shop = Shop::findOrFail($id);
+        $shopLocations = null;
+        if (!empty($shop->latitude && !empty($field->longitude))) {
+            $shopLocations[] = ['lat' => $shop->latitude, 'lng' => $shop->longitude];
+        }
+        return view([
+            'shop' => $shop,
+            'shopLocations ' => json_encode($shopLocations)
         ]);
     }
 
