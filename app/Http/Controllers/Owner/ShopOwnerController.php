@@ -17,8 +17,8 @@ class ShopOwnerController extends Controller
     {
         $shops = Shop::orderBy('id', 'asc')->get();
 
-        return view([
-            'fields' => $shops,
+        return view('owner.shops.index',[
+            'shops' => $shops,
         ]);
     }
 
@@ -56,7 +56,7 @@ class ShopOwnerController extends Controller
         if (!empty($shop->latitude && !empty($field->longitude))) {
             $shopLocations[] = ['lat' => $shop->latitude, 'lng' => $shop->longitude];
         }
-        return view([
+        return view('owner.shops.show',[
             'shop' => $shop,
             'shopLocations ' => json_encode($shopLocations)
         ]);

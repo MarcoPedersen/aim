@@ -3,9 +3,9 @@
 @section('content')
     <h1 class="h1 mb-4 text-gray-800">{{ $shop->name }}</h1>
 
-    @if($shopLocations)
-        @include('maps.index', array('shopLocations'=>$shopLocations))
-    @endif
+{{--    @if($shopLocations)--}}
+{{--        @include('maps.index', array('shopLocations'=>$shopLocations))--}}
+{{--    @endif--}}
 
     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <tr>

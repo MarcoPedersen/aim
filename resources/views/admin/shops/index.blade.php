@@ -49,7 +49,7 @@
                                    href="{{ route('admin.shops.show', $shop->id) }}"><i class="far fa-eye"></i></a>
                                 <a class="btn btn-primary btn-circle btn-sm"
                                    href="{{ route('admin.shops.edit', $shop->id) }}"><i class="fa fa-edit"></i></a>
-                                <form action="{{ 'admin.shops.destroy', $shop->id }}" method="POST">
+                                <form action="{{ route('admin.shops.destroy', $shop->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger btn-circle btn-sm"><i class="far fa-trash-alt"></i>

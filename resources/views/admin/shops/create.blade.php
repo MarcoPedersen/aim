@@ -17,15 +17,15 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="rules" class="col-sm-2 col-form-label">Email</label>
+            <label for="email" class="col-sm-2 col-form-label">Email</label>
             <div class="col-sm-10">
-                <textarea name="rules" class="form-control" id="rules"></textarea>
+                <textarea name="email" class="form-control" id="email"></textarea>
             </div>
         </div>
         <div class="form-group row">
-            <label for="email" class="col-sm-2 col-form-label">Phone</label>
+            <label for="phone" class="col-sm-2 col-form-label">Phone</label>
             <div class="col-sm-10">
-                <input type="text" name="email" class="form-control" id="email">
+                <input type="text" name="phone" class="form-control" id="phone">
             </div>
         </div>
         <div class="form-group row">

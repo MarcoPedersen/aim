@@ -46,7 +46,7 @@
 {{--                @include('maps.edit', array('location' => $shop->location))--}}
 {{--            </div>--}}
 {{--        </div>--}}
-        <input type="hidden" name="latitude" class="form-control" id="latitude" value="{{ $field->latitude }}">
-        <input type="hidden" name="longitude" class="form-control" id="longitude" value="{{ $field->longitude }}">
+{{--        <input type="hidden" name="latitude" class="form-control" id="latitude" value="{{ $field->latitude }}">--}}
+{{--        <input type="hidden" name="longitude" class="form-control" id="longitude" value="{{ $field->longitude }}">--}}
     </form>
 @endsection

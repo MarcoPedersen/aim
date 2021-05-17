@@ -17,8 +17,8 @@ class ShopAdminController extends Controller
     {
         $shops = Shop::orderBy('id', 'asc')->get();
 
-        return view([
-            'fields' => $shops,
+        return view('admin.shops.index',[
+            'shops' => $shops,
         ]);
     }
 
@@ -29,7 +29,7 @@ class ShopAdminController extends Controller
      */
     public function create()
     {
-        return view();
+        return view('admin.shops.create');
     }
 
     /**
@@ -49,7 +49,7 @@ class ShopAdminController extends Controller
         $shop->latitude = request('latitude');
         $shop->longitude = request('longitude');
         $shop->save();
-        return redirect('');
+        return redirect('/admin/shops');
     }
 
     /**
@@ -65,7 +65,7 @@ class ShopAdminController extends Controller
         if (!empty($shop->latitude && !empty($field->longitude))) {
             $shopLocations[] = ['lat' => $shop->latitude, 'lng' => $shop->longitude];
         }
-        return view([
+        return view('admin/shops/show',[
             'shop' => $shop,
             'shopLocations ' => json_encode($shopLocations)
         ]);
@@ -80,7 +80,7 @@ class ShopAdminController extends Controller
     public function edit($id)
     {
         $shop = Shop::findOrFail($id);
-        return view([]);
+        return view('admin/shops/edit',['shop' => $shop]);
     }
 
     /**
@@ -111,6 +111,6 @@ class ShopAdminController extends Controller
         $shop = Shop::findOrFail($id);
         $shop->delete();
 
-        return redirect('');
+        return redirect('/admin/shops');
     }
 }

@@ -25,8 +25,8 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    @if(Auth::user()->role_id >= 3)
 
+    @if(Auth::user()->role_id >= 3)
         <li class="nav-item">
             <a class="nav-link" href="{{ route(Auth::user()->role->name. '.users.index') }}">
                 <i class="fas fa-fw fa-chart-area"></i>
@@ -35,10 +35,17 @@
     @endif
 
     <li class="nav-item">
+        <a class="nav-link" href="{{ route(Auth::user()->role->name.'.shops.index') }}">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Shops</span></a>
+    </li>
+
+    <li class="nav-item">
         <a class="nav-link" href="{{ route(Auth::user()->role->name.'.fields.index') }}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Fields</span></a>
     </li>
+
     @if(Auth::user()->role_id >= 3)
     <li class="nav-item">
         <a class="nav-link" href="{{ route(Auth::user()->role->name.'.roles.index') }}">
@@ -46,6 +53,7 @@
             <span>Roles</span></a>
     </li>
     @endif
+
     <li class="nav-item">
         <a class="nav-link" href="{{ route(Auth::user()->role->name.'.teams.index') }}">
             <i class="fas fa-fw fa-chart-area"></i>
