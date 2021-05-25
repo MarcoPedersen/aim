@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Field;
 use Illuminate\Console\Command;
 use App\Services\GameScheduleService;
+use Illuminate\Database\Eloquent\Model;
 use function PHPUnit\Framework\fileExists;
 
 class GenerateSchedules extends Command
@@ -42,10 +43,12 @@ class GenerateSchedules extends Command
     {
         $fieldId = $this->ask('Which field do you want to create a schedule for?');
         $numberOfSchedules = $this->ask('how many schedules do you wish to generate?');
-//        $fieldId = $this->argument('fieldId');
+        $price = $this->ask('How much should the ticket cost?');
+        $limit = $this->ask('How many spots are available?');
+        $schedule = $this->choice('Which day of the week?', ['monday', 'tuesday', 'wednesday', 'thursday']);
 
         $gameScheduleService = new GameScheduleService();
-        $response = $gameScheduleService->generateGameSchedule($fieldId,$numberOfSchedules);
+        $response = $gameScheduleService->generateGameSchedule($fieldId, $numberOfSchedules, $price, $limit, $schedule);
 
 
         dd($response);
