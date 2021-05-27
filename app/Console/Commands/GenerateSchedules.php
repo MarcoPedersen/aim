@@ -2,11 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Field;
 use Illuminate\Console\Command;
 use App\Services\GameScheduleService;
-use Illuminate\Database\Eloquent\Model;
-use function PHPUnit\Framework\fileExists;
 
 class GenerateSchedules extends Command
 {
