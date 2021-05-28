@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Owner\FieldOwnerController;
 use App\Http\Controllers\Owner\ShopOwnerController;
 use App\Http\Controllers\Owner\GameScheduleOwnerController;
+use App\Http\Controllers\Owner\GameScheduleGeneratorOwnerController;
 use App\Http\Controllers\Owner\OwnerController;
 use App\Http\Controllers\Owner\TeamOwnerController;
 
@@ -54,6 +55,8 @@ Route::group(['as'=>'owner.','prefix'=>'owner'], function (){
     Route::resource('shops', ShopOwnerController::class);
     Route::resource('teams', TeamOwnerController::class);
     Route::resource('game-schedules', GameScheduleOwnerController::class);
+    Route::get('game-schedule-generator', [OwnerController::class, 'game-schedule-generator'])->name('game-schedule-generator');
+    Route::post('save-game-schedule-generator', [OwnerController::class, 'save-game-schedule-generator'])->name('save-game-schedule-generator');
     Route::get('dashboard', [OwnerController::class, 'dashboard'])->name('dashboard');
 
 });

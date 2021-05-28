@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Owner;
 
 use App\Models\GameSchedule;
-use App\Models\Field;
-use App\Models\FieldOwner;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 

@@ -42,7 +42,7 @@ class GenerateSchedules extends Command
         $numberOfSchedules = $this->ask('how many schedules do you wish to generate?');
         $price = $this->ask('How much should the ticket cost?');
         $limit = $this->ask('How many spots are available?');
-        $schedule = $this->choice('Which day of the week?', ['monday', 'tuesday', 'wednesday', 'thursday']);
+        $schedule = $this->choice('Which day of the week?', ['monday', 'tuesday', 'wednesday', 'thursday','friday','saturday','sunday']);
 
         $gameScheduleService = new GameScheduleService();
         $response = $gameScheduleService->generateGameSchedule($fieldId, $numberOfSchedules, $price, $limit, $schedule);
