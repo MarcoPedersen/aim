@@ -12,6 +12,12 @@
             </div>
         </div>
         <div class="form-group row">
+            <label for="time" class="col-sm-2 col-form-label">Time</label>
+            <div class="col-sm-10">
+                <input type="time" name="time" class="form-control" id="time" value="">
+            </div>
+        </div>
+        <div class="form-group row">
             <label for="price" class="col-sm-2 col-form-label">Price</label>
             <div class="col-sm-10">
                 <input type="text" name="price" class="form-control" id="price">

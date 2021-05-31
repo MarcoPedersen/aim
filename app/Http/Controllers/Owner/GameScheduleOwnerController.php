@@ -29,33 +29,36 @@ class GameScheduleOwnerController extends Controller
     {
         $fieldId = request('field_id');
 
-        return view('owner.game-schedules.create',['fieldId' => $fieldId]);
+        return view('owner.game-schedules.create', ['fieldId' => $fieldId]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $fieldId = request('field_id');
 
-        $gameSchedule= new GameSchedule();
-        $gameSchedule->date = request('date');
+        $gameSchedule = new GameSchedule();
+        $gameSchedule->date = request('date') . ' '. request('time');
         $gameSchedule->price = request('price');
         $gameSchedule->limit = request('limit');
         $gameSchedule->field_id = $fieldId;
+
+
+
         $gameSchedule->save();
 
-        return redirect('/owner/fields/' . $fieldId );
+        return redirect('/owner/fields/' . $fieldId);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -68,20 +71,23 @@ class GameScheduleOwnerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $gameSchedule = GameSchedule::findOrFail($id);
-        return view('owner.game-schedules.edit', ['gameSchedule' => $gameSchedule]);
+        $gameSchedule->date = date('Y-m-d', strtotime($gameSchedule->date));
+        $time = date('H:i:s', strtotime($gameSchedule->date));
+//
+        return view('owner.game-schedules.edit', ['gameSchedule' => $gameSchedule, 'time' => $time]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -92,25 +98,27 @@ class GameScheduleOwnerController extends Controller
             'limit' => 'required'
         ]);
         $gameSchedule = GameSchedule::findOrFail($id);
+        $updateData = $request->all();
+        data_set($updateData, 'date', $updateData['date'] . ' ' . $updateData['time']);
         $fieldId = $gameSchedule->field->id;
-        $gameSchedule->update($request->all());
-        return redirect('/owner/fields/'. $fieldId);
+        $gameSchedule->update($updateData);
+        return redirect('/owner/fields/' . $fieldId);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $gameSchedule = GameSchedule::findOrFail( $id);
+        $gameSchedule = GameSchedule::findOrFail($id);
         $fieldId = $gameSchedule->field->id;
         $gameSchedule->delete();
 
 
-        return redirect('/owner/fields/'. $fieldId);
+        return redirect('/owner/fields/' . $fieldId);
     }
 
     /**
@@ -123,13 +131,13 @@ class GameScheduleOwnerController extends Controller
     {
         $fieldId = request('field_id');
 
-        return view('owner.game-schedules.schedule-generator',['fieldId' => $fieldId]);
+        return view('owner.game-schedules.schedule-generator', ['fieldId' => $fieldId]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function storeSchedule(Request $request)
@@ -143,6 +151,6 @@ class GameScheduleOwnerController extends Controller
         $gameScheduleService = new GameScheduleService();
         $gameScheduleService->generateGameSchedule($fieldId, $numberOfSchedules, $price, $limit, $schedule);
 
-        return redirect('/owner/fields/' . $fieldId );
+        return redirect('/owner/fields/' . $fieldId);
     }
 }

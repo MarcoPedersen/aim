@@ -69,7 +69,15 @@ class FieldOwnerController extends Controller
      */
     public function show($id)
     {
-        $field = Field::findOrFail($id);
+
+        $field = Field::with([
+            'gameSchedules' => function ($query) {
+                $query->orderBy('date');
+            }
+        ])
+            ->findOrFail($id);
+
+//        $field = Field::findOrFail($id);
         $fieldLocations = null;
         if (!empty($field->latitude && !empty($field->longitude))){
             $fieldLocations[] = ['lat'=>$field->latitude,'lng'=>$field->longitude];
