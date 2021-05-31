@@ -66,5 +66,14 @@
            </tr>
         @endforeach
         </table>
+    <h1 class="h1 mb-4 text-gray-800">Generate multiple schedules</h1>
+    <p>
+        <a href="/owner/schedule-generator/?field_id={{ $field->id }}" class="btn btn-success btn-icon-split">
+            <span class="icon text-white-50">
+                <i class="fas fa-plus"></i>
+            </span>
+            <span class="text">Generate multiple game schedules</span>
+        </a>
+    </p>
     <a href="/owner/fields" class="back"> - Back to all fields </a>
 @endsection

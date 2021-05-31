@@ -16,11 +16,11 @@ class GameScheduleGeneratorOwnerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function createSchedule(Request $request)
     {
         $fieldId = request('field_id');
 
-        return view('owner.game-schedule-generator',['fieldId' => $fieldId]);
+        return view('owner.game-schedules.schedule-generator',['fieldId' => $fieldId]);
     }
 
     /**
@@ -32,14 +32,13 @@ class GameScheduleGeneratorOwnerController extends Controller
     public function store(Request $request)
     {
         $fieldId = request('field_id');
+        $numberOfSchedules = request('numberOfSchedules');
+        $price = request('price');
+        $limit = request('limit');
+        $schedule = request('choiceOfDay');
 
-        $gameSchedule= new GameSchedule();
-        $gameSchedule->numberOfSchedules = request('schedules');
-        $gameSchedule->date = request('date');
-        $gameSchedule->price = request('price');
-        $gameSchedule->limit = request('limit');
-        $gameSchedule->field_id = $fieldId;
-        $gameSchedule->save();
+        $gameScheduleService = new GameScheduleService();
+        $gameScheduleService->generateGameSchedule($fieldId, $numberOfSchedules, $price, $limit, $schedule);
 
         return redirect('/owner/fields/' . $fieldId );
     }
