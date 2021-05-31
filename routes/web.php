@@ -55,8 +55,8 @@ Route::group(['as'=>'owner.','prefix'=>'owner'], function (){
     Route::resource('shops', ShopOwnerController::class);
     Route::resource('teams', TeamOwnerController::class);
     Route::resource('game-schedules', GameScheduleOwnerController::class);
-    Route::get('schedule-generator', [GameScheduleGeneratorOwnerController::class, 'createSchedule']);
-    Route::post('save-game-schedule-generator', [GameScheduleGeneratorOwnerController::class, 'store'])->name('save-game-schedule-generator');
+    Route::get('schedule-generator', [GameScheduleOwnerController::class, 'createSchedule']);
+    Route::post('save-game-schedule-generator', [GameScheduleOwnerController::class, 'storeSchedule'])->name('save-game-schedule-generator');
     Route::get('dashboard', [OwnerController::class, 'dashboard'])->name('dashboard');
 
 });
