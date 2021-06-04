@@ -77,7 +77,6 @@ class FieldOwnerController extends Controller
         ])
             ->findOrFail($id);
 
-//        $field = Field::findOrFail($id);
         $fieldLocations = null;
         if (!empty($field->latitude && !empty($field->longitude))){
             $fieldLocations[] = ['lat'=>$field->latitude,'lng'=>$field->longitude];
