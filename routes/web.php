@@ -37,7 +37,7 @@ use App\Http\Controllers\Player\PlayerController;
 
 Route::get('/', [IndexController::class, 'welcome'])->name('welcome');
 
-Route::group(['as'=>'admin.','prefix'=>'admin'], function (){
+Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
 
     Route::resource('roles', RoleAdminController::class);
     Route::resource('users', UserAdminController::class);
@@ -49,19 +49,19 @@ Route::group(['as'=>'admin.','prefix'=>'admin'], function (){
 
 });
 
-Route::group(['as'=>'owner.','prefix'=>'owner'], function (){
+Route::group(['as' => 'owner.', 'prefix' => 'owner'], function () {
 
     Route::resource('fields', FieldOwnerController::class);
     Route::resource('shops', ShopOwnerController::class);
     Route::resource('teams', TeamOwnerController::class);
     Route::resource('game-schedules', GameScheduleOwnerController::class);
-    Route::get('schedule-generator', [GameScheduleOwnerController::class, 'createSchedule']);
-    Route::post('save-game-schedule-generator', [GameScheduleOwnerController::class, 'storeSchedule'])->name('save-game-schedule-generator');
+    Route::get('schedule-generator', [GameScheduleGeneratorOwnerController::class, 'createSchedule']);
+    Route::post('save-game-schedule-generator', [GameScheduleGeneratorOwnerController::class, 'storeSchedule'])->name('save-game-schedule-generator');
     Route::get('dashboard', [OwnerController::class, 'dashboard'])->name('dashboard');
 
 });
 
-Route::group(['as'=>'player.','prefix'=>'player'], function (){
+Route::group(['as' => 'player.', 'prefix' => 'player'], function () {
 
     Route::resource('fields', FieldPlayerController::class);
     Route::resource('shops', ShopPlayerController::class);

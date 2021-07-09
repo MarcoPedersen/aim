@@ -2,11 +2,14 @@
 
 namespace App\Actions\Fortify;
 
+use App\Listeners\EmailNotification;
+use App\event\UserCreated;
 use App\Models\User;
+use App\Rules\Captcha;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
-use App\Rules\Captcha;
+
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -15,7 +18,7 @@ class CreateNewUser implements CreatesNewUsers
     /**
      * Validate and create a newly registered user.
      *
-     * @param  array  $input
+     * @param array $input
      * @return \App\Models\User
      */
     public function create(array $input)
@@ -30,7 +33,7 @@ class CreateNewUser implements CreatesNewUsers
             'g-recaptcha-response' => new Captcha(),
         ])->validate();
 
-        return User::create([
+        $user = User::create([
             'first_name' => $input['first_name'],
             'last_name' => $input['last_name'],
             'username' => $input['username'],
@@ -38,5 +41,8 @@ class CreateNewUser implements CreatesNewUsers
             'password' => Hash::make($input['password']),
             'role_id' => $input['role_id'],
         ]);
+        event(new UserCreated('event has been called'));
+//        $user->notify(new EmailNotification());
+        return $user;
     }
 }
