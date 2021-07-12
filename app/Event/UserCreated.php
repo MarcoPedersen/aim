@@ -21,17 +21,17 @@ class UserCreated
      * @var \App\Models\User
      */
 
-    public $email;
+    public $user;
 
     /**
      * Create a new event instance.
      *
-     * @param \App\Models\User $email
+     * @param \App\Models\User $user
      * @return void
      */
-    public function __construct(Email $email)
+    public function __construct(User $user)
     {
-        $this->email = $email;
+        $this->user = $user;
     }
 
     /**

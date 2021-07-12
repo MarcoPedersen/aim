@@ -3,8 +3,10 @@
 namespace App\Listeners;
 
 use App\Event\UserCreated;
+use App\Mail\MailtrapExample;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\Mail;
 
 class EmailNotification
 {
@@ -26,6 +28,6 @@ class EmailNotification
      */
     public function handle(UserCreated $event)
     {
-        // Access the email using $event->email..
+        Mail::to('1ty.marcopedersen@gmail.com')->send(new MailtrapExample($event->user));
     }
 }

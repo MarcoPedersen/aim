@@ -41,7 +41,7 @@ class CreateNewUser implements CreatesNewUsers
             'password' => Hash::make($input['password']),
             'role_id' => $input['role_id'],
         ]);
-        event(new UserCreated('event has been called'));
+        event(new UserCreated($user));
 //        $user->notify(new EmailNotification());
         return $user;
     }
