@@ -42,7 +42,6 @@ class CreateNewUser implements CreatesNewUsers
             'role_id' => $input['role_id'],
         ]);
         event(new UserCreated($user));
-//        $user->notify(new EmailNotification());
         return $user;
     }
 }
