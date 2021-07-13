@@ -28,6 +28,6 @@ class EmailNotification
      */
     public function handle(UserCreated $event)
     {
-        Mail::to('1ty.marcopedersen@gmail.com')->send(new MailtgitrapExample($event->user));
+        Mail::to('from@example.com')->send(new MailtrapExample($event->user));
     }
 }

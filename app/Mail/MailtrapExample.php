@@ -1,5 +1,6 @@
 <?php
 namespace App\Mail;
+
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -29,7 +30,8 @@ class MailtrapExample extends Mailable
             ->subject('Mailtrap Confirmation')
             ->markdown('mails.exmpl')
             ->with([
-                'name' => 'New Mailtrap User',
-                'link' => '/inboxes/'
+                'name' => $this->user->first_name,
+                'username' => $this->user->username,
+                'link' => 'http://127.0.0.1:8000/dashboard'
             ]);
     }}
