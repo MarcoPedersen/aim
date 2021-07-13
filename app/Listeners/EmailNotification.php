@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Event\UserCreated;
+use App\Events\UserCreated;
 use App\Mail\MailtrapExample;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;

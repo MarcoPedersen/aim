@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Event\UserCreated;
+use App\Events\UserCreated;
 use App\Listeners\EmailNotification;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -21,6 +21,9 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         UserCreated::class => [
+            EmailNotification::class
+        ],
+        NewGameScheduleCreated::class => [
             EmailNotification::class
         ],
     ];

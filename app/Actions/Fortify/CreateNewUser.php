@@ -2,8 +2,9 @@
 
 namespace App\Actions\Fortify;
 
+
+use App\Events\UserCreated;
 use App\Listeners\EmailNotification;
-use App\event\UserCreated;
 use App\Models\User;
 use App\Rules\Captcha;
 use Illuminate\Support\Facades\Hash;
