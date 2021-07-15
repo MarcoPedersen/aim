@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Owner;
 
+use App\Events\NewGameScheduleCreated;
 use App\Models\GameSchedule;
 use App\Http\Controllers\Controller;
 use App\Services\GameScheduleService;
@@ -39,6 +40,8 @@ class GameScheduleGeneratorOwnerController extends Controller
 
         $gameScheduleService = new GameScheduleService();
         $gameScheduleService->generateGameSchedule($fieldId, $numberOfSchedules, $price, $limit, $schedule);
+
+        event(new NewGameScheduleCreated($gameScheduleService));
 
         return redirect('/owner/fields/' . $fieldId );
     }

@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\GameSchedule;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -14,14 +15,17 @@ class NewGameScheduleCreated
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    public $game_schedule;
+
     /**
      * Create a new event instance.
      *
+     * @param \App\Models\GameSchedule $game_schedule
      * @return void
      */
-    public function __construct()
+    public function __construct(GameSchedule $game_schedule)
     {
-        //
+        $this->game_schedule = $game_schedule;
     }
 
     /**
