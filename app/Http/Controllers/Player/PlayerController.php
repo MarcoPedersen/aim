@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Player;
 
+use App\Events\PlayerSignup;
 use App\Models\GameSchedule;
-use App\Models\GameSchedulePlayer;
 use App\Models\Team;
 use App\Models\User;
 use App\Http\Controllers\Controller;
@@ -44,11 +44,11 @@ class PlayerController extends Controller
         $userCheck = $gameSchedule->players()
             ->where('user_id', $userId)
             ->get();
-
+//        dd($user, $gameSchedule);
         if ($userCheck->isEmpty()) {
             $gameSchedule->players()->save($user);
         }
-
+        event(new PlayerSignup($user,$gameSchedule));
         return redirect()->route('player.fields.show', ['field' => $gameSchedule->field->id]);
     }
 

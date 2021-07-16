@@ -21,13 +21,13 @@ class GameScheduleGeneratorOwnerController extends Controller
     {
         $fieldId = request('field_id');
 
-        return view('owner.game-schedules.schedule-generator',['fieldId' => $fieldId]);
+        return view('owner.game-schedules.schedule-generator', ['fieldId' => $fieldId]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function storeSchedule(Request $request)
@@ -41,8 +41,6 @@ class GameScheduleGeneratorOwnerController extends Controller
         $gameScheduleService = new GameScheduleService();
         $gameScheduleService->generateGameSchedule($fieldId, $numberOfSchedules, $price, $limit, $schedule);
 
-        event(new NewGameScheduleCreated($gameScheduleService));
-
-        return redirect('/owner/fields/' . $fieldId );
+        return redirect('/owner/fields/' . $fieldId);
     }
 }

@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Events\PlayerSignup;
 use App\Events\UserCreated;
 use App\Events\NewGameScheduleCreated;
 use App\Listeners\EmailNotification;
+use App\Listeners\FieldOwnerNotification;
 use App\Listeners\NewGameNotification;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -27,6 +29,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         NewGameScheduleCreated::class => [
             NewGameNotification::class
+        ],
+        PlayerSignup::class => [
+            FieldOwnerNotification::class
         ],
     ];
 

@@ -3,7 +3,7 @@
 namespace App\Events;
 
 use App\Models\GameSchedule;
-use App\Services\GameScheduleService;
+use App\Models\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -12,32 +12,37 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class NewGameScheduleCreated
+class PlayerSignup
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
-     * the GameSchedule instance
+     * the user instance
      *
-     * @var \App\Models\GameSchedule
+     * @var \App\Models\User
      */
 
+    public $user;
     public $gameSchedule;
 
     /**
      * Create a new event instance.
      *
-     * @param GameSchedule $gameSchedule
+     * @param \App\Models\User $user
+     * @param \App\Models\GameSchedule $gameSchedule
+     * @return void
      */
-    public function __construct(GameSchedule $gameSchedule)
+
+    public function __construct(User $user, GameSchedule $gameSchedule)
     {
+        $this->user = $user;
         $this->gameSchedule = $gameSchedule;
     }
 
     /**
      * Get the channels the event should broadcast on.
      *
-     * @return Channel|array
+     * @return \Illuminate\Broadcasting\Channel|array
      */
     public function broadcastOn()
     {

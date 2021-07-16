@@ -2,13 +2,13 @@
 
 namespace App\Listeners;
 
-use App\Events\UserCreated;
-use App\Mail\MailtrapExample;
+use App\Events\PlayerSignup;
+use App\Mail\playerGameSignupNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Mail;
 
-class EmailNotification
+class FieldOwnerNotification
 {
     /**
      * Create the event listener.
@@ -23,11 +23,11 @@ class EmailNotification
     /**
      * Handle the event.
      *
-     * @param UserCreated $event
+     * @param PlayerSignup $event
      * @return void
      */
-    public function handle(UserCreated $event)
+    public function handle(PlayerSignup $event)
     {
-        Mail::to('from@example.com')->send(new MailtrapExample($event->user));
+        Mail::to('from@example.com')->send(new playerGameSignupNotification($event->user,$event->gameSchedule));
     }
 }

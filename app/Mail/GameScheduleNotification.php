@@ -5,20 +5,24 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+
 class GameScheduleNotification extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $game_schedule;
+    private $gameSchedule;
+
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($game_schedule)
+    public function __construct($gameSchedule)
     {
-        $this->game_schedule = $game_schedule;
+        $this->gameSchedule = $gameSchedule;
     }
+
     /**
      * Build the message.
      *
@@ -30,10 +34,11 @@ class GameScheduleNotification extends Mailable
             ->subject('GameScheduleNotification Confirmation')
             ->markdown('mails.newGameMessage')
             ->with([
-                'date' => $this->game_schedule->date,
-                'price' => $this->game_schedule->price,
-                'limit' => $this->game_schedule->limit,
-                'field_id' => $this->game_schedule->field_id,
+                'date' => $this->gameSchedule->date,
+                'price' => $this->gameSchedule->price,
+                'limit' => $this->gameSchedule->limit,
+                'field_id' => $this->gameSchedule->field_id,
                 'link' => 'http://127.0.0.1:8000/player/fields'
             ]);
-    }}
+    }
+}

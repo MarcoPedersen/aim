@@ -1,5 +1,5 @@
 @component('mail::message')
-Hello {{$name}},  {{-- use double space for line break --}}
+Hello {{$name}},
 You have created a profile with the  username: {{$username}}
 
 Thank you for creating a profile with us!

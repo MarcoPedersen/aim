@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Models\Field;
 use App\Models\GameSchedule;
 
-class GameScheduleService extends \App\Models\GameSchedule
+class GameScheduleService
 {
     public function generateGameSchedule($fieldId, $numberOfSchedules = 1, $price, $limit, $schedule)
     {

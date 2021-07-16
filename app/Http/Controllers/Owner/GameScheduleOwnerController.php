@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Owner;
 
+use App\Events\NewGameScheduleCreated;
 use App\Models\GameSchedule;
 use App\Http\Controllers\Controller;
 use App\Services\GameScheduleService;
@@ -43,14 +44,12 @@ class GameScheduleOwnerController extends Controller
         $fieldId = request('field_id');
 
         $gameSchedule = new GameSchedule();
-        $gameSchedule->date = request('date') . ' '. request('time');
+        $gameSchedule->date = request('date') . ' ' . request('time');
         $gameSchedule->price = request('price');
         $gameSchedule->limit = request('limit');
         $gameSchedule->field_id = $fieldId;
-
-
-
         $gameSchedule->save();
+
 
         return redirect('/owner/fields/' . $fieldId);
     }

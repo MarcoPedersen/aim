@@ -28,6 +28,6 @@ class NewGameNotification
      */
     public function handle(NewGameScheduleCreated $event)
     {
-        Mail::to('from@example.com')->send(new GameScheduleNotification($event->game_schedule));
+        Mail::to('from@example.com')->send(new GameScheduleNotification($event->gameSchedule));
     }
 }
