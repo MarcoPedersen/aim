@@ -2,10 +2,6 @@
     src="https://maps.googleapis.com/maps/api/js?key={{ config('app.google_map_key') }}&callback=initMap&libraries=&v=weekly"
     defer
 ></script>
-<script
-    src="https://maps.googleapis.com/maps/api/js?key={{ config('app.google_map_key') }}&callback=initMap&libraries=&v=weekly"
-    defer
-></script>
 <script>
     let markers = [];
     function initMap() {
